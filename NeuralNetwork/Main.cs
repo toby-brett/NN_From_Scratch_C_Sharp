@@ -1,51 +1,46 @@
 ﻿using System;
 using System.Diagnostics;
 
-/*
-class NeuralNetwork
+namespace NeuralNetwork
 {
-    // Declare weight and bias layers as fields (accessible across methods)
-    private static decimal[,] weightLayer1;
-    private static decimal[,] weightLayer2;
-    private static decimal[,] weightLayer3;
-
-    private static decimal[,] biasLayer1;
-    private static decimal[,] biasLayer2;
-    private static decimal[,] biasLayer3;
-
-    public static decimal[,] Sigmoid(Mat matrix)
+    class NeuralNetwork
     {
-        return matrix - matrix;
-    }
-    
-    public static void Initialise()
-    {
-        int m = 32; // batchsize
-        decimal lr = 0.001m; // learn rate
-
-        decimal[,] weightLayer1 = mat.Random(32, 30); // outputs, inputs
-        decimal[,] weightLayer2 = mat.Random(16, 32);
-        decimal[,] weightLayer3 = mat.Random(2, 16);
+        // Declare weight and bias layers as fields (accessible across methods)
         
-        decimal[,] biasLayer1 = mat.Zeroes(32, m);
-        decimal[,] biasLayer2 = mat.Zeroes(16, m);
-        decimal[,] biasLayer3 = mat.Zeroes(2, m);
-    }
-    
-    static void ForwardProp(decimal[,] x)
-    {
-        decimal[,] inputs = mat.Transpose(x);
-        decimal[,] logits1 = mat.Plus(mat.MatMul(weightLayer1, inputs), biasLayer2);
-        decimal[,] activation1 = 
-        decimal[,]
-        decimal[,]
-        decimal[,]
-        decimal[,]
-    }
-
-  //  static decimal[,] ForwardProps(decimal[,] x)
-  //  {
+        private static int m = 1; // batchsize
+        private static decimal lr = 0.001m; // learn rate
         
-   // }
+        private static Mat weightLayer1 = Mat.Random(30, m);
+        private static Mat weightLayer2 = Mat.Random(m, 16);
+        private static Mat weightLayer3 = Mat.Random(16, 2);
+
+        private static Mat biasLayer1 = Mat.Zeroes(m, 32);
+        private static Mat biasLayer2 = Mat.Zeroes(m, 16);
+        private static Mat biasLayer3 = Mat.Zeroes(m, 2);
+
+        public static Mat Sigmoid(Mat matrix)
+        {
+            return 1 / (1 + Mat.ExponentNumBase(Math.E, matrix));
+        }
+
+        static Mat ForwardProp(Mat x)
+        {
+            var inputs = Mat.Transpose(x);
+            var logits1 = (weightLayer1 & inputs) + biasLayer1;
+            var activation1 = Sigmoid(logits1);
+            var logits2 = (weightLayer2 & activation1) + biasLayer2;
+            var activation2 = Sigmoid(logits2);
+            var logits3 = (weightLayer3 & activation2) + biasLayer3;
+            var activation3 = Sigmoid(logits3);
+            
+            return activation3;
+        }
+
+        static void Main()
+        {
+            Mat input = Mat.Random(30, m);
+            Mat output = ForwardProp(input);
+            Mat.PrintArray(output);
+        }
+    }
 }
-*/

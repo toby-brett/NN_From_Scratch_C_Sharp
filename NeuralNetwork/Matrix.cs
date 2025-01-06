@@ -24,6 +24,14 @@ public class Mat
     {
         return (decimal[,])_data.Clone(); // Return a copy of the data array as a decimal array
     }
+
+    public int[] shape()
+    {
+        int y = ((decimal[,])_data).GetLength(0);
+        int x = ((decimal[,])_data).GetLength(1);
+        int[] shape =  { y, x };
+        return shape;
+    }
     
     // FUNCTIONS
 
@@ -375,27 +383,8 @@ public class Mat
         return toMat(matrix);
     }
 
-    static void Main()
+    static void Run()
     {
-        decimal[,] matrix =
-        {
-            { 1, 2, 3 },
-            { 4, 5, 6 },
-            { 7, 8, 9 }
-        };
-        
-        decimal[,] matrix1 =
-        {
-            { 4, 5, 2 },
-            { 2, 9, 3 },
-            { 8, 1, 4 }
-        };
-
-        Mat MATRIX1 = toMat(matrix);
-        Mat MATRIX2 = toMat(matrix1);
-
-        Mat OUTPUT = ExponentNumBase(Math.E, MATRIX1);
-        PrintArray(OUTPUT);
     }
     
     // FUNCTIONS END
